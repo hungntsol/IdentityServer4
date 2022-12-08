@@ -6,7 +6,7 @@ builder.Services.AddAuthentication("CookieBasicAuth")
 	.AddCookie("CookieBasicAuth",
 		cookieAuthenticationOptions =>
 		{
-			cookieAuthenticationOptions.Cookie.Name = "IdentityServer.BasicAuth";
+			cookieAuthenticationOptions.Cookie.Name = "Identity.BasicAuth";
 			cookieAuthenticationOptions.LoginPath = "/Home/Authenticate";
 		});
 
@@ -38,6 +38,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.Map("/", () => "IdentityServer start");
+app.Map("/", () => "BasicAuth start");
 
 app.Run();
