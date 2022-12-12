@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicAuth", "src\BasicAuth\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "src\IdentityServer\IdentityServer.csproj", "{365A595A-2E64-4C11-8CD4-905D9B125407}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basic", "basic", "{BD31F4F6-5F6B-4A40-86EF-839A272A8716}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "oauth", "oauth", "{776FBCAC-6269-484E-8E37-80A47135E37D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtServer", "src\JwtServer\JwtServer.csproj", "{D5899C8B-99F6-4429-A5C3-46A3F58512EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +27,18 @@ Global
 		{365A595A-2E64-4C11-8CD4-905D9B125407}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{365A595A-2E64-4C11-8CD4-905D9B125407}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{365A595A-2E64-4C11-8CD4-905D9B125407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5899C8B-99F6-4429-A5C3-46A3F58512EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5899C8B-99F6-4429-A5C3-46A3F58512EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5899C8B-99F6-4429-A5C3-46A3F58512EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5899C8B-99F6-4429-A5C3-46A3F58512EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9894C10-8920-4030-9F51-750861EE402C} = {BD31F4F6-5F6B-4A40-86EF-839A272A8716}
+		{365A595A-2E64-4C11-8CD4-905D9B125407} = {BD31F4F6-5F6B-4A40-86EF-839A272A8716}
+		{D5899C8B-99F6-4429-A5C3-46A3F58512EE} = {776FBCAC-6269-484E-8E37-80A47135E37D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D14C446-1423-4298-99C2-E73584E1311C}
