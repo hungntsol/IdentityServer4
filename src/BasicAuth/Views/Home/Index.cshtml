@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@if (User.Identity!.IsAuthenticated)
+{
+	<h2>User is authenticated</h2>
+}
+else
+{
+	<h2>User not authenticated</h2>
+}
+
+@if ((await AuthorizationService.AuthorizeAsync(User, "v1_secret")).Succeeded)
+{
+	<h2>User has policy v1_secret</h2>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
