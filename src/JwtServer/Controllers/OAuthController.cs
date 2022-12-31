@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -70,5 +71,17 @@ public class OAuthController : Controller
 		};
 
 		return Json(responseObject);
+	}
+
+	[HttpGet]
+	[Authorize]
+	public IActionResult Validate()
+	{
+		if (HttpContext.Request.Query.TryGetValue("access_token", out var accessToken))
+		{
+			return Ok();
+		}
+
+		return BadRequest();
 	}
 }

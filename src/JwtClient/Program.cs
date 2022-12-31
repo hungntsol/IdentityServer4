@@ -1,3 +1,7 @@
+using System.Security.Claims;
+using System.Text;
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,9 +26,29 @@ services.AddAuthentication(authenticationOptions =>
 		oAuthOptions.ClientSecret = "client_secret";
 		oAuthOptions.AuthorizationEndpoint = "https://localhost:18003/oauth/authorize";
 		oAuthOptions.TokenEndpoint = "https://localhost:18003/oauth/token";
+
+		oAuthOptions.SaveTokens = true;
+		oAuthOptions.Events.OnCreatingTicket = creatingTicketContext =>
+		{
+			var accessToken = creatingTicketContext.AccessToken;
+			var base64Payload = accessToken!.Split('.')[1];
+			var bytes = Convert.FromBase64String(base64Payload);
+			var jsonPayload = Encoding.UTF8.GetString(bytes);
+
+			var claims = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonPayload);
+
+			foreach (var (key, value) in claims!)
+			{
+				creatingTicketContext.Identity?.AddClaim(new Claim(key, value));
+			}
+
+			return Task.CompletedTask;
+		};
 	});
 
 services.AddControllersWithViews();
+
+services.AddHttpClient();
 
 var app = builder.Build();
 
